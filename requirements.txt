@@ -1,0 +1,4 @@
+# Pin the AutoGluon release the notebooks are written against.
+autogluon.tabular[tabarena]==1.6.1
+jupyterlab
+matplotlib

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# AutoGluon / experiment artifacts
+AutogluonModels/
+*.log
+
+# Large data files: download via scripts/, never commit
+data/*.parquet
+data/*.pq
+data/*.zip
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
