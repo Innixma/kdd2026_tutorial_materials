@@ -23,6 +23,7 @@ External notebooks worth working through alongside the tutorial:
 - [TabICL tutorial gallery](https://github.com/soda-inria/tabicl/tree/main/tutorials) — getting started, probabilistic classification, interpretability (SHAP), fine-tuning, unsupervised use, and forecasting.
 - [nanotabicl](https://github.com/soda-inria/nanotabicl) — the minimal TabICL prior and model, the source behind notebook 04.
 - [nanoTabPFN experiment notebook](https://github.com/automl/nanoTabPFN/blob/main/experiment.ipynb) — pretrain a working TabPFN-style model in about a minute on one GPU, in under 500 lines ([paper](https://arxiv.org/abs/2511.03634)).
+- [TFM-Playground](https://github.com/automl/TFM-Playground) — a playground for experimenting with tabular foundation models.
 - [AutoGluon: deployment optimization](https://auto.gluon.ai/stable/tutorials/tabular/advanced/tabular-deployment.html) — shrinking and shipping a fitted predictor for production inference.
 
 ## Layout
