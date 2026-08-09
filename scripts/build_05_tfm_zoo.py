@@ -120,7 +120,6 @@ from tabarena.models.exaone_tabular.model import EXAONETabularModel
 hyperparameters = {
     # Built into AutoGluon (string keys):
     "TABICL": {},           # TabICLv2
-    "TABDPT": {},
     "TABDPT-TURBO": {},
     "NORI": {},             # regression-only: dropped from the fit plan on this binary task
     # TabPFN family: gated Hugging Face checkpoints -- authenticate first (`huggingface-cli login`),
