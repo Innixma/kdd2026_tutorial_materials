@@ -1,4 +1,4 @@
-"""Build notebooks/04_tfm_zoo.ipynb.
+"""Build notebooks/03_tfm_zoo.ipynb.
 
 Fitting and predicting with many tabular foundation models through one AutoGluon
 TabularPredictor: the built-in TFM model keys, plus tabarena's wrappers (EXAONE-Tabular,
@@ -12,7 +12,7 @@ from pathlib import Path
 
 import nbformat as nbf
 
-OUT = Path(__file__).resolve().parents[1] / "notebooks" / "04_tfm_zoo.ipynb"
+OUT = Path(__file__).resolve().parents[1] / "notebooks" / "03_tfm_zoo.ipynb"
 
 nb = nbf.v4.new_notebook()
 nb.metadata.kernelspec = {"display_name": "Python 3", "language": "python", "name": "python3"}
@@ -33,7 +33,7 @@ def code(text: str) -> None:
 md("""
 # The TFM zoo: one predictor, every foundation model
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/04_tfm_zoo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/03_tfm_zoo.ipynb)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/Innixma/kdd2026_tutorial_materials)
 [![Tutorial Website](https://img.shields.io/badge/Tutorial-Website-0a7aca?logo=googlechrome&logoColor=white)](https://kdd26-automl-hands-on.github.io/)
 
@@ -204,7 +204,7 @@ md("""
 - The presets from notebook 02 (`extreme`, `noncommercial`) are exactly this zoo with a
   meta-learned shopping list: a portfolio of configs chosen on TabArena, plus bagging.
 
-**Next**: [notebook 05](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/05_thinking_mode.ipynb) pushes a single model past the zoo — thinking mode on the dataset TFMs couldn't crack.
+**Next**: [notebook 04](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/04_inside_the_prior.ipynb) looks at where all these models come from — the synthetic prior.
 """)
 
 nb.cells = cells

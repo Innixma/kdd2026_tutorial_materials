@@ -1,4 +1,4 @@
-"""Build notebooks/03_inside_the_prior.ipynb.
+"""Build notebooks/04_inside_the_prior.ipynb.
 
 Where TFMs come from: runs nanotabicl's ``prior.py`` (the TabICL-style synthetic prior in
 ~350 self-contained lines) to generate and visualize the kind of datasets tabular foundation
@@ -11,7 +11,7 @@ from pathlib import Path
 
 import nbformat as nbf
 
-OUT = Path(__file__).resolve().parents[1] / "notebooks" / "03_inside_the_prior.ipynb"
+OUT = Path(__file__).resolve().parents[1] / "notebooks" / "04_inside_the_prior.ipynb"
 
 nb = nbf.v4.new_notebook()
 nb.metadata.kernelspec = {"display_name": "Python 3", "language": "python", "name": "python3"}
@@ -31,7 +31,7 @@ def code(text: str) -> None:
 md("""
 # Inside the prior: the synthetic data TFMs grow up on
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/03_inside_the_prior.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/04_inside_the_prior.ipynb)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/Innixma/kdd2026_tutorial_materials)
 [![Tutorial Website](https://img.shields.io/badge/Tutorial-Website-0a7aca?logo=googlechrome&logoColor=white)](https://kdd26-automl-hands-on.github.io/)
 
@@ -183,7 +183,7 @@ model spends its capacity on structure that generalizes, not on memorizing stati
 - **It is all synthetic.** No real data is in the weights, which is why licensing
   conversations focus on the *weights'* terms, not on training-data provenance.
 
-**Next**: [notebook 04](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/04_tfm_zoo.ipynb) puts the whole TFM zoo behind a single AutoGluon predictor.
+**Next**: [notebook 05](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/05_thinking_mode.ipynb) pushes a single model past the zoo — thinking mode on the dataset TFMs couldn't crack.
 """)
 
 nb.cells = cells

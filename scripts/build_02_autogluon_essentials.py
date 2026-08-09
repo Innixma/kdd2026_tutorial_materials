@@ -300,8 +300,8 @@ at **0.9952**. The `extreme` leaderboard above shows what an automatically compo
 portfolio of foundation models and trees achieves with one `fit()` call — check the
 `score_test` of the best model against those numbers.
 
-**Next**: [notebook 03](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/03_inside_the_prior.ipynb) opens up where these models come
-from — the synthetic prior they are pretrained on.
+**Next**: [notebook 03](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/03_tfm_zoo.ipynb) puts the whole TFM zoo behind a single
+AutoGluon predictor.
 """)
 
 nb.cells = cells
