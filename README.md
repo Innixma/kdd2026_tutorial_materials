@@ -1,6 +1,8 @@
 # Taming Structured Data Foundation Models with AutoML: A Hands-On Guide
 
-Materials for the KDD 2026 hands-on tutorial.
+Materials for the [KDD 2026](https://kdd.org/kdd2026/) hands-on tutorial — see the
+[tutorial website](https://kdd26-automl-hands-on.github.io/) for the schedule, speakers,
+and slides.
 
 ## Notebooks
 
