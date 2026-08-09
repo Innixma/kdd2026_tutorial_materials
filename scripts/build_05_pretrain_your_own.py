@@ -143,9 +143,11 @@ md("""
 ## What just happened
 
 A transformer that has **never seen a real dataset** — and never gets gradient updates on
-this one — classifies tumors via a single forward pass, in the same league as a classical
-model fit directly to the data. That is the entire TFM thesis in miniature, reproduced on
-your GPU in about a minute:
+this one — classifies tumors at 0.96 AUC via a single forward pass. Logistic regression,
+fit directly to the data, still wins here (breast cancer is a friendly, near-linear
+problem), but that is not the point: the point is that *one minute* of pretraining on
+synthetic tables produces genuine learning-to-learn. That is the entire TFM thesis in
+miniature, reproduced on your GPU:
 
 - The **prior** (notebook 04) supplies endless synthetic prediction tasks.
 - Pretraining across them teaches the architecture *how to learn from a table*, rather than
