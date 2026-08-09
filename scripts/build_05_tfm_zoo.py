@@ -70,7 +70,7 @@ IN_COLAB = importlib.util.find_spec("google.colab") is not None
 if IN_COLAB:
     !command -v uv >/dev/null || pip install -q uv
     !uv pip install -q --python {__import__('sys').executable} "autogluon.tabular[tabarena]" openml \\
-        "tabarena[exaone_tabular] @ git+https://github.com/autogluon/tabarena.git"
+        "tabarena[exaone_tabular] @ git+https://github.com/autogluon/tabarena.git#subdirectory=packages/tabarena"
 """)
 
 md("## The dataset\n\nSame task as notebooks 02 and 03 — *polish_companies_bankruptcy*, official benchmark split — so every number is comparable across the tutorial.")
