@@ -48,6 +48,8 @@ order of sophistication:
    hyperparameters, early stopping, and 8-fold bagged ensembling.
 3. **TabICLv2** — a tabular foundation model (TFM). A single default configuration, no
    hyperparameters to choose, one forward pass through a pretrained network.
+4. **TabFM** — the largest current TFM (Google Research), run with a single ensemble member
+   to keep the footprint small. Roughly 10-20x TabICLv2's compute at full ensemble size.
 
 The dataset — *polish_companies_bankruptcy* from the [TabArena](https://tabarena.ai)
 benchmark — is a binary classification problem: predict whether a Polish company goes
@@ -66,7 +68,7 @@ code("""
 # packages are already present).
 import sys
 !command -v uv >/dev/null || pip install -q uv
-!uv pip install -q --python {sys.executable} xgboost autogluon.tabular tabicl openml
+!uv pip install -q --python {sys.executable} xgboost autogluon.tabular tabicl openml jax "tabfm[pytorch] @ git+https://github.com/google-research/tabfm.git@01004165"
 
 import time
 
@@ -179,6 +181,35 @@ results["TabICLv2 (default)"] = (auc, total_s)
 print(f"TabICLv2:  AUC = {auc:.4f}   (fit + predict {total_s:.1f}s)")
 """)
 
+
+md("""
+## Tier 4 — the largest tabular foundation model
+
+TabFM is the biggest TFM on the [TabArena](https://tabarena.ai) leaderboard, where it is the
+strongest single model overall. We run it with `n_estimators=1` (a single ensemble member)
+so it fits in a small GPU's memory; the full default ensemble is substantially stronger and
+substantially more expensive.
+""")
+
+code("""
+import torch
+from tabfm import TabFMClassifier, tabfm_v1_0_0_pytorch
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+# Untimed: downloads the pretrained checkpoint from Hugging Face on first use.
+network = tabfm_v1_0_0_pytorch.load(model_type="classification", device=device)
+
+t0 = time.time()
+tabfm = TabFMClassifier(model=network, n_estimators=1)
+tabfm.fit(X_train, y_train)
+proba = tabfm.predict_proba(X_test)[:, 1]
+total_s = time.time() - t0
+
+auc = roc_auc_score(y_test, proba)
+results["TabFM (1 member)"] = (auc, total_s)
+print(f"TabFM (1 member):  AUC = {auc:.4f}   (fit + predict {total_s:.1f}s)")
+""")
+
 md("## The comparison")
 
 code("""
@@ -206,8 +237,11 @@ md("""
   "fit" is effectively free and its cost sits at prediction time, yet even the total is
   on par with a single naive XGBoost fit on datasets this size.
 
-**Next**: notebook 03 looks at *what* a TFM actually predicts — calibrated probabilities and
-full predictive distributions — and why that matters.
+On the TabArena artifacts for this dataset (full protocol, 8-fold bagged), TabFM's mean AUC
+is **0.995** — the strongest of any single model, taking another large bite out of TabICLv2's
+remaining error.
+
+**Next**: notebook 03 puts these models to work automatically through AutoGluon.
 """)
 
 nb.cells = cells

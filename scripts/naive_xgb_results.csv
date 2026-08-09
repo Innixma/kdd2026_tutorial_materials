@@ -1,0 +1,8 @@
+dataset,metric,naive_xgb_err
+hazelnut-spread-contaminant-detection,roc_auc,0.03905520833333334
+polish_companies_bankruptcy,roc_auc,0.05356971878687268
+airfoil_self_noise,rmse,1.8684597637466664
+Marketing_Campaign,roc_auc,0.12516777164427342
+churn,roc_auc,0.07708619482393016
+NATICUSdroid,roc_auc,0.01633902388731232
+maternal_health_risk,log_loss,0.5176818895630266
