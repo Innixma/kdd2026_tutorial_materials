@@ -42,13 +42,13 @@ md("""
 In this notebook we take one small real-world dataset and fit it three ways, in increasing
 order of sophistication:
 
-1. **Naive XGBoost** — the `xgboost` library with its out-of-the-box defaults, the way a
+1. **Naive [XGBoost](https://arxiv.org/abs/1603.02754)** — the `xgboost` library with its out-of-the-box defaults, the way a
    first-time user would run it.
 2. **XGBoost through AutoGluon, with bagging** — the same model family, but with AutoML-grade
    hyperparameters, early stopping, and 8-fold bagged ensembling.
-3. **TabICLv2** — a tabular foundation model (TFM). A single default configuration, no
+3. **[TabICLv2](https://arxiv.org/abs/2602.11139)** — a tabular foundation model (TFM). A single default configuration, no
    hyperparameters to choose, one forward pass through a pretrained network.
-4. **TabFM** — the largest current TFM (Google Research), run with a single ensemble member
+4. **[TabFM](https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/)** — the largest current TFM (Google Research), run with a single ensemble member
    to keep the footprint small. Roughly 10-20x TabICLv2's compute at full ensemble size.
 
 The dataset — *polish_companies_bankruptcy* from the [TabArena](https://tabarena.ai)
