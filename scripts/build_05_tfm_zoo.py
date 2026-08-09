@@ -106,7 +106,9 @@ and TabFM's checkpoint is a very large download.
 Models that live outside the AutoGluon release drop into the same dict as classes:
 tabarena's `EXAONETabularModel` wrapper works like any built-in. And the zoo is not only
 TFMs — the commented block at the bottom lists the classical toolkit (boosted trees,
-forests, linear models, neural nets) that shares the same interface.
+forests, linear models, neural nets) that shares the same interface. The full roster of
+built-in models and their keys is in the
+[AutoGluon model docs](https://auto.gluon.ai/stable/api/autogluon.tabular.models.html).
 """)
 
 code("""
