@@ -104,7 +104,9 @@ wild: the TabPFN family's checkpoints are gated on Hugging Face (run
 and TabFM's checkpoint is a very large download.
 
 Models that live outside the AutoGluon release drop into the same dict as classes:
-tabarena's `EXAONETabularModel` wrapper works like any built-in.
+tabarena's `EXAONETabularModel` wrapper works like any built-in. And the zoo is not only
+TFMs — the commented block at the bottom lists the classical toolkit (boosted trees,
+forests, linear models, neural nets) that shares the same interface.
 """)
 
 code("""
@@ -126,6 +128,21 @@ hyperparameters = {
     # From tabarena's model wrappers (classes):
     EXAONETabularModel: {},
     # TabFMModel: {"n_estimators": 1},
+    # The same zoo also holds the entire classical toolkit -- uncomment any of these to add
+    # them to the exact same fit/leaderboard/ensemble flow:
+    # "GBM": {},        # LightGBM
+    # "XGB": {},        # XGBoost
+    # "CAT": {},        # CatBoost
+    # "GBM_PREP": {},   # TabPrep LightGBM (feature-engineering pipeline + LightGBM)
+    # "EBM": {},        # Explainable Boosting Machine
+    # "RF": {},         # RandomForest
+    # "XT": {},         # ExtraTrees
+    # "KNN": {},
+    # "LR": {},         # Linear model
+    # "REALMLP": {},
+    # "TABM": {},
+    # "NN_TORCH": {},   # AutoGluon's torch MLP
+    # "FASTAI": {},     # fastai tabular NN
 }
 
 predictor = TabularPredictor(label="company_bankrupt", eval_metric="roc_auc").fit(
