@@ -26,3 +26,6 @@ notebooks/AutogluonModels/
 notebooks/prior.py
 notebooks/noniid_naive/
 notebooks/noniid_grouped/
+notebooks/300k_150x5_2.h5
+notebooks/model.py
+notebooks/train.py

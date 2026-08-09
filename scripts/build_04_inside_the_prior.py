@@ -183,7 +183,7 @@ model spends its capacity on structure that generalizes, not on memorizing stati
 - **It is all synthetic.** No real data is in the weights, which is why licensing
   conversations focus on the *weights'* terms, not on training-data provenance.
 
-**Next**: [notebook 05](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/05_thinking_mode.ipynb) pushes a single model past the zoo — thinking mode on the dataset TFMs couldn't crack.
+**Next**: [notebook 05](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/05_pretrain_your_own.ipynb) pretrains a TabPFN-style model on exactly this kind of data — in about a minute.
 """)
 
 nb.cells = cells

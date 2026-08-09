@@ -1,4 +1,4 @@
-"""Build notebooks/05_thinking_mode.ipynb.
+"""Build notebooks/06_thinking_mode.ipynb.
 
 TabPFN-3 thinking mode on Amazon_employee_access: first the exhibit that TFMs struggle on
 this high-cardinality-categorical dataset while CatBoost dominates, then thinking mode via
@@ -11,7 +11,7 @@ from pathlib import Path
 
 import nbformat as nbf
 
-OUT = Path(__file__).resolve().parents[1] / "notebooks" / "05_thinking_mode.ipynb"
+OUT = Path(__file__).resolve().parents[1] / "notebooks" / "06_thinking_mode.ipynb"
 
 nb = nbf.v4.new_notebook()
 nb.metadata.kernelspec = {"display_name": "Python 3", "language": "python", "name": "python3"}
@@ -32,7 +32,7 @@ def code(text: str) -> None:
 md("""
 # Thinking mode: cracking the dataset TFMs couldn't
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/05_thinking_mode.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/06_thinking_mode.ipynb)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/Innixma/kdd2026_tutorial_materials)
 [![Tutorial Website](https://img.shields.io/badge/Tutorial-Website-0a7aca?logo=googlechrome&logoColor=white)](https://kdd26-automl-hands-on.github.io/)
 
@@ -205,7 +205,7 @@ The takeaways for practice:
   described in the [TabPFN-3 technical report](https://priorlabs.ai/technical-reports/tabpfn-3).
 - It runs through the TabPFN API (`tabpfn-client`), not the local `tabpfn` package.
 
-**Next**: [notebook 06](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/06_noniid_validation.ipynb) tackles data where rows aren't IID — honest validation with grouped and temporal splits.
+**Next**: [notebook 07](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/07_noniid_validation.ipynb) tackles data where rows aren't IID — honest validation with grouped and temporal splits.
 """)
 
 nb.cells = cells
