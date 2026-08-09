@@ -205,7 +205,7 @@ The takeaways for practice:
   described in the [TabPFN-3 technical report](https://priorlabs.ai/technical-reports/tabpfn-3).
 - It runs through the TabPFN API (`tabpfn-client`), not the local `tabpfn` package.
 
-**Next**: [notebook 07](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/07_noniid_validation.ipynb) tackles data where rows aren't IID — honest validation with grouped and temporal splits.
+**Next**: [notebook 07](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/07_interpretability.ipynb) opens the black box — Shapley explanations for TabPFN-3 predictions, and the KV cache that makes them fast.
 """)
 
 nb.cells = cells

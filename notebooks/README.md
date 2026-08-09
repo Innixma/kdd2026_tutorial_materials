@@ -8,7 +8,8 @@ One notebook per tutorial module, numbered in session order:
 4. `04_inside_the_prior.ipynb` — the synthetic prior TFMs are pretrained on, generated live (CPU runtime).
 5. `05_pretrain_your_own.ipynb` — pretrain a working TabPFN-style model in about a minute with nanoTabPFN.
 6. `06_thinking_mode.ipynb` — TabPFN-3 thinking mode on the dataset where TFMs lose to CatBoost (needs a Prior Labs token).
-7. `07_noniid_validation.ipynb` — naive vs `validation_structure` splits on grouped data (CPU runtime).
-8. `08_timeseries_forecasting.ipynb` — forecasting with AutoGluon.
+7. `07_interpretability.ipynb` — Shapley explanations for TabPFN-3 predictions via shapiq, plus the KV-cache `fit_mode` story.
+8. `08_noniid_validation.ipynb` — naive vs `validation_structure` splits on grouped data (CPU runtime).
+9. `09_timeseries_forecasting.ipynb` — forecasting with AutoGluon.
 
 Keep saved outputs in the committed notebooks so attendees who fall behind can read along.

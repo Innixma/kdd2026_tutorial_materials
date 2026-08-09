@@ -1,4 +1,4 @@
-"""Build notebooks/07_noniid_validation.ipynb.
+"""Build notebooks/08_noniid_validation.ipynb.
 
 Non-IID validation in AutoGluon: a naive random split vs `validation_structure` on the
 mice-protein dataset (72 mice, 15 repeated measurements each), where the naive split's
@@ -11,7 +11,7 @@ from pathlib import Path
 
 import nbformat as nbf
 
-OUT = Path(__file__).resolve().parents[1] / "notebooks" / "07_noniid_validation.ipynb"
+OUT = Path(__file__).resolve().parents[1] / "notebooks" / "08_noniid_validation.ipynb"
 
 nb = nbf.v4.new_notebook()
 nb.metadata.kernelspec = {"display_name": "Python 3", "language": "python", "name": "python3"}
@@ -31,7 +31,7 @@ def code(text: str) -> None:
 md("""
 # When rows aren't IID: honest validation with `validation_structure`
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/07_noniid_validation.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/08_noniid_validation.ipynb)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/Innixma/kdd2026_tutorial_materials)
 [![Tutorial Website](https://img.shields.io/badge/Tutorial-Website-0a7aca?logo=googlechrome&logoColor=white)](https://kdd26-automl-hands-on.github.io/)
 
@@ -148,7 +148,7 @@ didn't just *report* the wrong number, it *shipped* a worse model.
   grouped and temporal splits as first-class citizens, and leaderboards there are computed
   on structure-respecting splits — 39 of its datasets declare a group or time column.
 
-**Next**: [notebook 08](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/08_timeseries_forecasting.ipynb) closes the loop by applying the in-context idea to time series forecasting.
+**Next**: [notebook 09](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/09_timeseries_forecasting.ipynb) closes the loop by applying the in-context idea to time series forecasting.
 """)
 
 nb.cells = cells
