@@ -107,13 +107,22 @@ before fitting AutoGluon. We actively recommend that you avoid performing operat
 missing value imputation or one-hot-encoding, as AutoGluon has dedicated logic to handle
 these situations automatically.
 
+### Pick the evaluation metric first
+
+One decision is worth making *before* fitting: what metric your application actually cares
+about. With ~7% positives, accuracy is nearly useless here — a model that answers "No
+bankruptcy" for every company is already ~93% accurate. For imbalanced screening problems
+the ranking quality matters, so we use `roc_auc`. Passing it to `TabularPredictor` makes
+AutoGluon optimize everything — validation, model selection, ensembling — for *that* metric
+instead of the default (accuracy for binary classification).
+
 ### Training
 
 Now we initialize and fit AutoGluon's TabularPredictor in one line of code:
 """)
 
 code("""
-predictor = TabularPredictor(label=label).fit(train_data)
+predictor = TabularPredictor(label=label, eval_metric="roc_auc").fit(train_data)
 """)
 
 md("""
@@ -141,9 +150,10 @@ predictor.evaluate(test_data)
 """)
 
 md("""
-With ~7% positives, accuracy is dominated by the majority class — a model that says "No
-bankruptcy" for everyone is already ~93% accurate. Keep an eye on `roc_auc` instead; we will
-make it the optimization target explicitly in the last section.
+`evaluate` leads with the metric the predictor optimizes (`roc_auc`), alongside auxiliary
+metrics. Note how high `accuracy` looks despite the mediocre `recall` — the majority-class
+trap from the metric discussion above; had we optimized accuracy, the leaderboard below
+would rank models by a number that barely reflects screening quality.
 
 We can also evaluate each model individually:
 """)
@@ -171,10 +181,10 @@ md("""
 ## Description of fit()
 
 Since there are only two possible values of the `company_bankrupt` variable, this was a
-binary classification problem, for which an appropriate performance metric is _accuracy_
-(but see above — we will switch to `roc_auc`). AutoGluon automatically infers this, as well
-as the type of each feature, and handles common issues like missing data and rescaling
-feature values.
+binary classification problem. AutoGluon infers that automatically (along with the type of
+each feature, missing-data handling, and rescaling); had we not passed `eval_metric`, it
+would also have defaulted the metric to accuracy — which is exactly what we did not want
+here.
 
 We did not specify separate validation data, so AutoGluon chose a train/validation split
 automatically. Rather than a single model, AutoGluon trains multiple models and ensembles
@@ -254,8 +264,7 @@ predictive accuracy with AutoGluon, you should generally use it like this:
 
 code("""
 time_limit = 600  # for quick demonstration only; set this to the longest time you are willing to wait (in seconds)
-metric = "roc_auc"  # the metric that actually matters for imbalanced bankruptcy screening
-predictor = TabularPredictor(label, eval_metric=metric).fit(
+predictor = TabularPredictor(label, eval_metric="roc_auc").fit(
     train_data, time_limit=time_limit, presets="extreme"
 )
 """)
@@ -272,9 +281,8 @@ This command implements the following strategy to maximize accuracy:
   stacking/bagging. The default `presets="medium"` produces less accurate models but
   facilitates faster prototyping.
 - Provide `eval_metric` to `TabularPredictor()` if you know what metric will be used to
-  evaluate predictions in your application (here `roc_auc`; other options include `f1`,
-  `log_loss`, `mean_absolute_error`, ...). AutoGluon then optimizes validation, ensembling,
-  and model selection for *that* metric.
+  evaluate predictions in your application, as we did from the very first fit (other options
+  include `f1`, `log_loss`, `mean_absolute_error`, ...).
 - Include all your data in `train_data` and do not provide `tuning_data` (AutoGluon will
   split the data more intelligently to fit its needs).
 - Do not specify the `hyperparameter_tune_kwargs` argument (counterintuitively,
