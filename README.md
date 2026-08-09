@@ -14,6 +14,15 @@ Materials for the KDD 2026 hands-on tutorial.
 
 The notebooks open on a free Colab T4 GPU runtime by default.
 
+### Additional notebooks
+
+External notebooks worth working through alongside the tutorial:
+
+- [TabPFN local demo](https://github.com/PriorLabs/TabPFN/blob/main/examples/notebooks/TabPFN_Demo_Local.ipynb) — Prior Labs' official demo: local-GPU vs API backends, classification and regression.
+- [AutoGluon: tabular foundational models](https://auto.gluon.ai/stable/tutorials/tabular/tabular-foundational-models.html) — the official AutoGluon tutorial for the TFMs used in this repo.
+- [TabICL tutorial gallery](https://github.com/soda-inria/tabicl/tree/main/tutorials) — getting started, probabilistic classification, interpretability (SHAP), fine-tuning, unsupervised use, and forecasting.
+- [nanotabicl](https://github.com/soda-inria/nanotabicl) — the minimal TabICL prior and model, the source behind notebook 04.
+
 ## Layout
 
 - `notebooks/` — the hands-on notebooks, one per tutorial module, numbered in session order.
