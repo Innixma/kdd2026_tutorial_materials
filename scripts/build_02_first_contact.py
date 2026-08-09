@@ -61,6 +61,41 @@ and it cleanly separates the three tiers.
 > just slower). The metric is ROC AUC, where 0.5 is random and 1.0 is perfect.
 """)
 
+md("""
+## Tabular foundation models at a glance
+
+Before fitting anything, here is the current TFM landscape — the models, the fit
+constraints AutoGluon enforces for each (above the limits a model is skipped rather than
+fitted), and, first thing to check in practice, the licenses. Adapted from the
+[AutoGluon foundational-models tutorial](https://auto.gluon.ai/stable/tutorials/tabular/tabular-foundational-models.html).
+
+| Model | Key | Released | Max rows | Max features | Max classes | Tasks | License |
+|---|---|---|---:|---:|---:|---|---|
+| TabPFN-1 | *not in AutoGluon* | 2022-07 | 1,000 | 100 | 10 | classification | Apache-2.0 |
+| TabDPT | `TABDPT` | 2024-10 | 100,000 | 2,500 | 160 | all | Apache-2.0 |
+| TabPFNv2 | `REALTABPFN-V2` | 2025-01 | 10,000 | 500 | 10 | all | Prior Labs License (commercial use permitted) |
+| TabICL | `TABICL` (v1 checkpoint) | 2025-02 | 500,000 | 2,000 | — | all | BSD-3-Clause |
+| Mitra | `MITRA` | 2025-07 | 10,000 | 500 | 10 | all | Apache-2.0 |
+| RealTabPFN-2.5 | `REALTABPFN-V2.5` | 2025-11 | 100,000 | 2,000 | 10 | all | Commercial license required |
+| TabICLv2 | `TABICL` (default) | 2026-02 | 500,000 | 2,000 | — | all | BSD-3-Clause |
+| TabPFN-2.6 | `TABPFN-2.6` | 2026-03 | 100,000 | — | 10 | all | Commercial license required |
+| TabPFN-3 | `TABPFN-3` | 2026-05 | 500,000 | — | 160 | all | Commercial license required |
+| TabDPT-Turbo | `TABDPT-TURBO` | 2026-06 | 100,000 | — | 160 | all | Apache-2.0 |
+| Nori | `NORI` | 2026-06 | 50,000 | — | — | regression only | Apache-2.0 |
+| TabFM | *not in AutoGluon; `tabfm` library* | 2026-06 | — | — | — | all | Code Apache-2.0; weights noncommercial |
+
+Notes:
+
+- **Licensing is the first thing to check.** The TabPFN models from 2.5 onwards and TabFM's
+  weights are free for research and internal experimentation, but commercial use requires a
+  license ([Prior Labs license FAQ](https://docs.priorlabs.ai/models#tabpfn-model-license)).
+  TabPFNv2, TabICL/TabICLv2, TabDPT, Mitra, and Nori are all free for commercial use.
+- Limits are per fit, measured on the training split; several models are far slower near
+  their upper bound than well below it.
+- AutoGluon's `extreme` and `noncommercial` presets (notebook 03) bundle these models into
+  meta-learned portfolios instead of fitting them one at a time.
+""")
+
 md("## Setup")
 
 code("""
