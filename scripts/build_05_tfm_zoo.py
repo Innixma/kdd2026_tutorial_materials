@@ -135,7 +135,6 @@ hyperparameters = {
     # "GBM": {},        # LightGBM
     # "XGB": {},        # XGBoost
     # "CAT": {},        # CatBoost
-    # "GBM_PREP": {},   # TabPrep LightGBM (feature-engineering pipeline + LightGBM)
     # "EBM": {},        # Explainable Boosting Machine
     # "RF": {},         # RandomForest
     # "XT": {},         # ExtraTrees
