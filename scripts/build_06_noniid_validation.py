@@ -148,8 +148,7 @@ didn't just *report* the wrong number, it *shipped* a worse model.
   grouped and temporal splits as first-class citizens, and leaderboards there are computed
   on structure-respecting splits — 39 of its datasets declare a group or time column.
 
-**Next**: with fitting, priors, the zoo, and honest validation covered, you have the full
-toolkit — the remaining sessions put it to work on the benchmark itself.
+**Next**: [notebook 07](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/07_timeseries_forecasting.ipynb) closes the loop by applying the in-context idea to time series forecasting.
 """)
 
 nb.cells = cells
