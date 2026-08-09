@@ -52,7 +52,8 @@ shared validation protocol, and an ensemble over everything at the end. The zoo 
 AutoGluon model classes, so models that haven't shipped in an AutoGluon release yet (like
 EXAONE-Tabular or TabFM) drop into the same dict.
 
-> **Runtime**: ~5-10 minutes on a Colab T4, most of it checkpoint downloads on first use.
+> **Runtime**: ~10-15 minutes on a Colab T4 (8-fold bagging fits each model eight times),
+> plus checkpoint downloads on first use.
 """)
 
 md("""
@@ -149,10 +150,12 @@ hyperparameters = {
 predictor = TabularPredictor(label="company_bankrupt", eval_metric="roc_auc").fit(
     train_data,
     hyperparameters=hyperparameters,
+    num_bag_folds=8,
+    num_gpus=1,  # one GPU is plenty here; also keeps multi-GPU hosts from over-allocating
 )
 """)
 
-md("## The leaderboard\n\nEvery model was fit under the same validation protocol, and `WeightedEnsemble_L2` blends them — the zoo's models are strongest *together*.")
+md("## The leaderboard\n\nEvery model was fit as an 8-fold bag under the same validation protocol (the TabArena convention), and `WeightedEnsemble_L2` blends the bags — the zoo's models are strongest *together*.")
 
 code("""
 predictor.leaderboard(test_data)
@@ -164,7 +167,7 @@ Predictions come from the ensemble by default, or from any single zoo member by 
 
 code("""
 proba_ensemble = predictor.predict_proba(test_data)
-proba_tabicl = predictor.predict_proba(test_data, model="TabICL")
+proba_tabicl = predictor.predict_proba(test_data, model="TabICL_BAG_L1")
 proba_ensemble.head()
 """)
 
