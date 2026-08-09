@@ -48,4 +48,4 @@ pip install -r requirements.txt
 python scripts/check_environment.py
 ```
 
-Run the environment check (and the model-weight prefetch it performs) before the session: the tabular foundation model checkpoints are several hundred MB and should never be downloaded over conference Wi-Fi.
+Run the environment check (and the model-weight prefetch it performs) before the session: the tabular foundation model checkpoints are several hundred MB.
