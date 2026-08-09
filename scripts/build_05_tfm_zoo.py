@@ -60,8 +60,7 @@ md("""
 ## Setup
 
 The install is skipped outside Colab so it never overwrites a locally managed environment.
-`autogluon.tabular[tabarena]` brings the built-in TFMs' dependencies; `tabarena` itself adds
-the benchmark's model wrappers (with the `exaone_tabular` extra for EXAONE's library).
+`autogluon.tabular[tabarena]` brings the built-in TFMs' dependencies.
 
 If the cell prints that numpy changed, the runtime restarts itself once — wait for it to
 reconnect, then continue from the **next** cell (no need to re-run the install).
@@ -73,8 +72,7 @@ import importlib.util
 IN_COLAB = importlib.util.find_spec("google.colab") is not None
 if IN_COLAB:
     !command -v uv >/dev/null || pip install -q uv
-    !uv pip install -q --python {__import__('sys').executable} "autogluon.tabular[tabarena]" openml \\
-        "tabarena[exaone_tabular] @ git+https://github.com/autogluon/tabarena.git#subdirectory=packages/tabarena"
+    !uv pip install -q --python {__import__('sys').executable} "autogluon.tabular[tabarena]" openml
 
     # The install may replace Colab's preinstalled numpy; the copy already loaded in this
     # kernel then no longer matches the files on disk and imports break. When that happens,
@@ -119,7 +117,8 @@ RealTabPFN-2.5 is left commented as an exercise, and TabFM is commented because 
 checkpoint is a very large download.
 
 Models that live outside the AutoGluon release drop into the same dict as classes:
-tabarena's `EXAONETabularModel` wrapper works like any built-in. And the zoo is not only
+tabarena's benchmark wrappers (EXAONE-Tabular, TabFM, and every other TabArena entrant)
+work like built-ins — shown commented below with their install line. And the zoo is not only
 TFMs — the commented block at the bottom lists the classical toolkit (boosted trees,
 forests, linear models, neural nets) that shares the same interface. The full roster of
 built-in models and their keys is in the
@@ -133,9 +132,10 @@ import os
 # Get a free personal token at https://priorlabs.ai and use it instead after the session.
 os.environ["TABPFN_TOKEN"] = "tabpfn_sk_urveJ352tgTRgaE-v2q1ghl5ZF86DVdhbEJAkzkZea4"
 
-from tabarena.models.exaone_tabular.model import EXAONETabularModel
-
-# from tabarena.models.tabfm.model import TabFMModel  # ~13GB checkpoint download; uncomment if you have the time/disk
+# tabarena's benchmark wrappers drop into the same dict as classes. Install them with:
+#   pip install "tabarena[exaone_tabular] @ git+https://github.com/autogluon/tabarena.git#subdirectory=packages/tabarena"
+# from tabarena.models.exaone_tabular.model import EXAONETabularModel
+# from tabarena.models.tabfm.model import TabFMModel  # ~13GB checkpoint download
 
 hyperparameters = {
     # Built into AutoGluon (string keys):
@@ -143,11 +143,11 @@ hyperparameters = {
     "TABDPT-TURBO": {},
     "NORI": {},             # regression-only: dropped from the fit plan on this binary task
     # TabPFN family: gated checkpoints, authenticated via TABPFN_TOKEN above.
-    "TABPFN-2.6": {},
     "TABPFN-3": {},      # noncommercial weights; commercial use needs a Prior Labs license
+    # "TABPFN-2.6": {},
     # "REALTABPFN-V2.5": {},
-    # From tabarena's model wrappers (classes):
-    EXAONETabularModel: {},
+    # From tabarena's model wrappers (classes; see the install line above):
+    # EXAONETabularModel: {},
     # TabFMModel: {"n_estimators": 1},
     # The same zoo also holds the entire classical toolkit -- uncomment any of these to add
     # them to the exact same fit/leaderboard/ensemble flow:
