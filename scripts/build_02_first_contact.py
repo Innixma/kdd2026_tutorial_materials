@@ -44,7 +44,7 @@ order of sophistication:
 
 1. **Naive [XGBoost](https://arxiv.org/abs/1603.02754)** — the `xgboost` library with its out-of-the-box defaults, the way a
    first-time user would run it.
-2. **XGBoost through AutoGluon, with bagging** — the same model family, but with AutoML-grade
+2. **XGBoost through [AutoGluon](https://auto.gluon.ai/stable/index.html), with bagging** — the same model family, but with AutoML-grade
    hyperparameters, early stopping, and 8-fold bagged ensembling.
 3. **[TabICLv2](https://arxiv.org/abs/2602.11139)** — a tabular foundation model (TFM). A single default configuration, no
    hyperparameters to choose, one forward pass through a pretrained network.
