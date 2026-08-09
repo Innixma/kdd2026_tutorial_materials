@@ -83,6 +83,7 @@ fitted), and, first thing to check in practice, the licenses. Adapted from the
 | TabDPT-Turbo | `TABDPT-TURBO` | 2026-06 | 100,000 | — | 160 | all | Apache-2.0 |
 | Nori | `NORI` | 2026-06 | 50,000 | — | — | regression only | Apache-2.0 |
 | TabFM | *not in AutoGluon; `tabfm` library* | 2026-06 | — | — | — | all | Code Apache-2.0; weights noncommercial |
+| EXAONE-Tabular | *not in AutoGluon; tabarena wrapper* | 2026-07 | — | — | — | all | Code BSD-3-Clause-LG; weights noncommercial (EXAONE 1.1-NC) |
 
 Notes:
 
