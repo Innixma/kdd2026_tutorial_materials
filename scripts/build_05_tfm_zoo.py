@@ -99,10 +99,11 @@ several TFMs side by side — and includes one deliberate misfit: Nori is regres
 on this binary task AutoGluon quietly drops it from the fit plan instead of crashing,
 exactly the constraint handling you would otherwise write yourself.
 
-Two groups are present but commented out, each for a practical reason you will hit in the
-wild: the TabPFN family's checkpoints are gated on Hugging Face (run
-`huggingface-cli login` with a token that has accepted the model terms, then uncomment),
-and TabFM's checkpoint is a very large download.
+The TabPFN family's checkpoints are gated: normally you authenticate with your own token
+(free at [priorlabs.ai](https://priorlabs.ai)). For the tutorial we provide a temporary
+token below — it will be revoked after KDD, so replace it with yours afterwards.
+RealTabPFN-2.5 is left commented as an exercise, and TabFM is commented because its
+checkpoint is a very large download.
 
 Models that live outside the AutoGluon release drop into the same dict as classes:
 tabarena's `EXAONETabularModel` wrapper works like any built-in. And the zoo is not only
@@ -113,6 +114,12 @@ built-in models and their keys is in the
 """)
 
 code("""
+import os
+
+# Temporary tutorial token for the gated TabPFN checkpoints (revoked after KDD 2026).
+# Get a free personal token at https://priorlabs.ai and use it instead after the session.
+os.environ["TABPFN_TOKEN"] = "tabpfn_sk_urveJ352tgTRgaE-v2q1ghl5ZF86DVdhbEJAkzkZea4"
+
 from tabarena.models.exaone_tabular.model import EXAONETabularModel
 
 # from tabarena.models.tabfm.model import TabFMModel  # ~13GB checkpoint download; uncomment if you have the time/disk
@@ -122,11 +129,10 @@ hyperparameters = {
     "TABICL": {},           # TabICLv2
     "TABDPT-TURBO": {},
     "NORI": {},             # regression-only: dropped from the fit plan on this binary task
-    # TabPFN family: gated Hugging Face checkpoints -- authenticate first (`huggingface-cli login`),
-    # accept the model terms on the hub, then uncomment. TabPFN-3 weights are also noncommercial.
-    # "TABPFN-2.6": {},
+    # TabPFN family: gated checkpoints, authenticated via TABPFN_TOKEN above.
+    "TABPFN-2.6": {},
+    "TABPFN-3": {},      # noncommercial weights; commercial use needs a Prior Labs license
     # "REALTABPFN-V2.5": {},
-    # "TABPFN-3": {},
     # From tabarena's model wrappers (classes):
     EXAONETabularModel: {},
     # TabFMModel: {"n_estimators": 1},
