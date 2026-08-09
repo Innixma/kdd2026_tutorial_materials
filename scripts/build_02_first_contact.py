@@ -237,9 +237,9 @@ md("""
   "fit" is effectively free and its cost sits at prediction time, yet even the total is
   on par with a single naive XGBoost fit on datasets this size.
 
-On the TabArena artifacts for this dataset (full protocol, 8-fold bagged), TabFM's mean AUC
-is **0.995** — the strongest of any single model, taking another large bite out of TabICLv2's
-remaining error.
+TabFM's single-member run above scores **0.9954** — the strongest single model on the
+board, taking another large bite out of TabICLv2's remaining error at a fraction of a
+second of compute.
 
 **Next**: notebook 03 puts these models to work automatically through AutoGluon. Preview of
 where that lands on this same split: the default preset (optimized for `roc_auc`) reaches
