@@ -15,9 +15,8 @@ OUT = Path(__file__).resolve().parents[1] / "notebooks" / "04_inside_the_prior.i
 
 nb = nbf.v4.new_notebook()
 nb.metadata.kernelspec = {"display_name": "Python 3", "language": "python", "name": "python3"}
-# Colab reads these when the notebook is opened and preselects a T4 GPU runtime.
-nb.metadata["accelerator"] = "GPU"
-nb.metadata["colab"] = {"gpuType": "T4", "provenance": []}
+# CPU-only notebook: no accelerator metadata, so Colab opens a plain CPU runtime.
+nb.metadata["colab"] = {"provenance": []}
 cells = []
 
 
