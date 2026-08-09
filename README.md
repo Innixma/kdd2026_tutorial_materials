@@ -22,6 +22,7 @@ External notebooks worth working through alongside the tutorial:
 - [AutoGluon: tabular foundational models](https://auto.gluon.ai/stable/tutorials/tabular/tabular-foundational-models.html) — the official AutoGluon tutorial for the TFMs used in this repo.
 - [TabICL tutorial gallery](https://github.com/soda-inria/tabicl/tree/main/tutorials) — getting started, probabilistic classification, interpretability (SHAP), fine-tuning, unsupervised use, and forecasting.
 - [nanotabicl](https://github.com/soda-inria/nanotabicl) — the minimal TabICL prior and model, the source behind notebook 04.
+- [AutoGluon: deployment optimization](https://auto.gluon.ai/stable/tutorials/tabular/advanced/tabular-deployment.html) — shrinking and shipping a fitted predictor for production inference.
 
 ## Layout
 
