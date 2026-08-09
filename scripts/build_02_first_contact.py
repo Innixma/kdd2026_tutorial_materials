@@ -62,8 +62,11 @@ and it cleanly separates the three tiers.
 md("## Setup")
 
 code("""
-# On Colab, uncomment the next line (installs take ~2 minutes):
-# %pip install -q xgboost autogluon.tabular tabicl openml
+# Installs everything the notebook needs (fast via uv; a no-op where the
+# packages are already present).
+import sys
+!command -v uv >/dev/null || pip install -q uv
+!uv pip install -q --python {sys.executable} xgboost autogluon.tabular tabicl openml
 
 import time
 

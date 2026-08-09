@@ -56,8 +56,11 @@ every score here is directly comparable to the staircase we built there.
 md("## TabularPredictor\n\nTo start, import AutoGluon's `TabularPredictor` and `TabularDataset` classes:")
 
 code("""
-# On Colab, uncomment the next line (installs take a few minutes):
-# %pip install -q autogluon.tabular[tabarena] openml
+# Installs everything the notebook needs, including the tabular foundation models used
+# by the `extreme` preset (fast via uv; a no-op where already present).
+import sys
+!command -v uv >/dev/null || pip install -q uv
+!uv pip install -q --python {sys.executable} "autogluon.tabular[tabarena]" openml
 
 from autogluon.tabular import TabularDataset, TabularPredictor
 """)
