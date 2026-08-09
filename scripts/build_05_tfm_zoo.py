@@ -62,6 +62,9 @@ md("""
 The install is skipped outside Colab so it never overwrites a locally managed environment.
 `autogluon.tabular[tabarena]` brings the built-in TFMs' dependencies; `tabarena` itself adds
 the benchmark's model wrappers (with the `exaone_tabular` extra for EXAONE's library).
+
+If the cell prints that numpy changed, the runtime restarts itself once — wait for it to
+reconnect, then continue from the **next** cell (no need to re-run the install).
 """)
 
 code("""
@@ -72,6 +75,16 @@ if IN_COLAB:
     !command -v uv >/dev/null || pip install -q uv
     !uv pip install -q --python {__import__('sys').executable} "autogluon.tabular[tabarena]" openml \\
         "tabarena[exaone_tabular] @ git+https://github.com/autogluon/tabarena.git#subdirectory=packages/tabarena"
+
+    # The install may replace Colab's preinstalled numpy; the copy already loaded in this
+    # kernel then no longer matches the files on disk and imports break. When that happens,
+    # restart the runtime once (continue from the next cell after it reconnects).
+    import importlib.metadata
+    import numpy
+    if importlib.metadata.version("numpy") != numpy.__version__:
+        print("numpy changed -- restarting the Colab runtime; re-run FROM THE NEXT CELL when it reconnects.")
+        import os
+        os.kill(os.getpid(), 9)
 """)
 
 md("## The dataset\n\nSame task as notebooks 02 and 03 — *polish_companies_bankruptcy*, official benchmark split — so every number is comparable across the tutorial.")
