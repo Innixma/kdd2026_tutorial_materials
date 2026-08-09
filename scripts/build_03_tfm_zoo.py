@@ -105,10 +105,13 @@ print(f"train: {train_data.shape}, test: {test_data.shape}")
 md("""
 ## One dict, many foundation models
 
-AutoGluon's registry addresses each built-in model by a string key. The zoo below runs
+AutoGluon's registry addresses each built-in model by a string key — the keys, fit
+constraints, and licenses are all in the at-a-glance table that opened
+[notebook 01](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/01_first_contact.ipynb). The zoo below runs
 several TFMs side by side — and includes one deliberate misfit: Nori is regression-only, so
 on this binary task AutoGluon quietly drops it from the fit plan instead of crashing,
-exactly the constraint handling you would otherwise write yourself.
+exactly the constraint handling the table's limits describe and you would otherwise write
+yourself.
 
 The TabPFN family's checkpoints are gated: normally you authenticate with your own token
 (free at [priorlabs.ai](https://priorlabs.ai)). For the tutorial we provide a temporary
