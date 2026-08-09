@@ -8,6 +8,7 @@ Materials for the KDD 2026 hands-on tutorial.
 |---|---|---|
 | [`02_first_contact.ipynb`](notebooks/02_first_contact.ipynb) | Four tiers on one real dataset: naive XGBoost, AutoGluon-bagged XGBoost, TabICLv2, and TabFM | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/02_first_contact.ipynb) |
 | [`03_autogluon_essentials.ipynb`](notebooks/03_autogluon_essentials.ipynb) | AutoGluon essentials: fit, predict, evaluate, inspect, and the `extreme` preset with TFMs | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/03_autogluon_essentials.ipynb) |
+| [`04_inside_the_prior.ipynb`](notebooks/04_inside_the_prior.ipynb) | The synthetic prior TFMs are pretrained on, generated live via nanotabicl | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/04_inside_the_prior.ipynb) |
 | [`kdd-tutorial-timeseries.ipynb`](notebooks/kdd-tutorial-timeseries.ipynb) | Time series forecasting with AutoGluon | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/kdd-tutorial-timeseries.ipynb) |
 
 The notebooks open on a free Colab T4 GPU runtime by default.
