@@ -1,4 +1,4 @@
-"""Build notebooks/02_first_contact.ipynb.
+"""Build notebooks/02b_first_contact_tabfm.ipynb.
 
 The tutorial's first hands-on notebook: one small real dataset, three fits of increasing
 sophistication — naive XGBoost, AutoGluon-configured XGBoost with bagging, then a single
@@ -12,7 +12,7 @@ from pathlib import Path
 
 import nbformat as nbf
 
-OUT = Path(__file__).resolve().parents[1] / "notebooks" / "02_first_contact.ipynb"
+OUT = Path(__file__).resolve().parents[1] / "notebooks" / "02b_first_contact_tabfm.ipynb"
 
 nb = nbf.v4.new_notebook()
 nb.metadata.kernelspec = {"display_name": "Python 3", "language": "python", "name": "python3"}
@@ -31,9 +31,9 @@ def code(text: str) -> None:
 
 
 md("""
-# First contact: from a naive baseline to a tabular foundation model
+# First contact (extended): four tiers, up to the largest tabular foundation model
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/02_first_contact.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/02b_first_contact_tabfm.ipynb)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-181717?logo=github)](https://github.com/Innixma/kdd2026_tutorial_materials)
 [![Tutorial Website](https://img.shields.io/badge/Tutorial-Website-0a7aca?logo=googlechrome&logoColor=white)](https://kdd26-automl-hands-on.github.io/)
 
@@ -48,6 +48,8 @@ order of sophistication:
    hyperparameters, early stopping, and 8-fold bagged ensembling.
 3. **TabICLv2** — a tabular foundation model (TFM). A single default configuration, no
    hyperparameters to choose, one forward pass through a pretrained network.
+4. **TabFM** — the largest current TFM (Google Research), run with a single ensemble member
+   to keep the footprint small. Roughly 10-20x TabICLv2's compute at full ensemble size.
 
 The dataset — *polish_companies_bankruptcy* from the [TabArena](https://tabarena.ai)
 benchmark — is a binary classification problem: predict whether a Polish company goes
@@ -66,7 +68,7 @@ code("""
 # packages are already present).
 import sys
 !command -v uv >/dev/null || pip install -q uv
-!uv pip install -q --python {sys.executable} xgboost autogluon.tabular tabicl openml
+!uv pip install -q --python {sys.executable} xgboost autogluon.tabular tabicl openml "tabfm[pytorch] @ git+https://github.com/google-research/tabfm.git"
 
 import time
 
@@ -179,6 +181,38 @@ results["TabICLv2 (default)"] = (auc, total_s)
 print(f"TabICLv2:  AUC = {auc:.4f}   (fit + predict {total_s:.1f}s)")
 """)
 
+
+md("""
+## Tier 4 — the largest tabular foundation model
+
+TabFM is the biggest TFM on the [TabArena](https://tabarena.ai) leaderboard, where it is the
+strongest single model overall. We run it with `n_estimators=1` (a single ensemble member)
+so it fits in a small GPU's memory; the full default ensemble is substantially stronger and
+substantially more expensive.
+
+> **Note**: this tier is experimental on free Colab GPUs; the checkpoint download is large
+> and a T4's 16GB may be tight. If it fails, the three tiers above stand on their own.
+""")
+
+code("""
+import torch
+from tabfm import TabFMClassifier, tabfm_v1_0_0_pytorch
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+# Untimed: downloads the pretrained checkpoint from Hugging Face on first use.
+network = tabfm_v1_0_0_pytorch.load(model_type="classification", device=device)
+
+t0 = time.time()
+tabfm = TabFMClassifier(model=network, n_estimators=1)
+tabfm.fit(X_train, y_train)
+proba = tabfm.predict_proba(X_test)[:, 1]
+total_s = time.time() - t0
+
+auc = roc_auc_score(y_test, proba)
+results["TabFM (1 member)"] = (auc, total_s)
+print(f"TabFM (1 member):  AUC = {auc:.4f}   (fit + predict {total_s:.1f}s)")
+""")
+
 md("## The comparison")
 
 code("""
@@ -206,8 +240,11 @@ md("""
   "fit" is effectively free and its cost sits at prediction time, yet even the total is
   on par with a single naive XGBoost fit on datasets this size.
 
-**Next**: notebook 03 looks at *what* a TFM actually predicts — calibrated probabilities and
-full predictive distributions — and why that matters.
+On the TabArena artifacts for this dataset (full protocol, 8-fold bagged), TabFM's mean AUC
+is **0.995** — the strongest of any single model, taking another large bite out of TabICLv2's
+remaining error.
+
+**Next**: notebook 03 puts these models to work automatically through AutoGluon.
 """)
 
 nb.cells = cells
