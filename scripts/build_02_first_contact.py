@@ -241,7 +241,11 @@ On the TabArena artifacts for this dataset (full protocol, 8-fold bagged), TabFM
 is **0.995** — the strongest of any single model, taking another large bite out of TabICLv2's
 remaining error.
 
-**Next**: notebook 03 puts these models to work automatically through AutoGluon.
+**Next**: notebook 03 puts these models to work automatically through AutoGluon. Preview of
+where that lands on this same split: the default preset (optimized for `roc_auc`) reaches
+**0.9687**, and the `extreme` preset — which composes TabICLv2, TabDPT-Turbo, and a TabPrep
+LightGBM into one ensemble with a single `fit()` call — reaches **0.9955**, matching the
+hand-run TabFM tier above without you ever choosing a model.
 """)
 
 nb.cells = cells
