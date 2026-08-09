@@ -259,18 +259,23 @@ with `pip install autogluon[tabarena]`. Without a GPU, start with `best`.
 
 **Note:** You should not call `fit()` with entirely default arguments if you are
 benchmarking AutoGluon-Tabular or hoping to maximize its accuracy! To get the best
-predictive accuracy with AutoGluon, you should generally use it like this:
+predictive accuracy with AutoGluon, you should generally use it like this (the cell is
+commented out by default because Colab's CPUs are very slow for the preset's PrepLightGBM
+fit — the saved outputs below show a full run):
 """)
 
 code("""
-time_limit = 600  # for quick demonstration only; set this to the longest time you are willing to wait (in seconds)
-predictor = TabularPredictor(label, eval_metric="roc_auc").fit(
-    train_data, time_limit=time_limit, presets="extreme"
-)
+# Commented out by default: Colab's very slow CPUs make the preset's PrepLightGBM fit take
+# ~8 minutes instead of the usual ~15 seconds. The outputs below are from a full run on a
+# regular machine -- uncomment to run it yourself.
+# time_limit = 600  # for quick demonstration only; set this to the longest time you are willing to wait (in seconds)
+# predictor = TabularPredictor(label, eval_metric="roc_auc").fit(
+#     train_data, time_limit=time_limit, presets="extreme"
+# )
 """)
 
 code("""
-predictor.leaderboard(test_data)
+# predictor.leaderboard(test_data)  # uncomment together with the fit above
 """)
 
 md("""
