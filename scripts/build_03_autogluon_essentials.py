@@ -30,6 +30,8 @@ def code(text: str) -> None:
 md("""
 # AutoGluon Tabular — Essential Functionality
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/03_autogluon_essentials.ipynb)
+
 **Taming Structured Data Foundation Models with AutoML — KDD 2026 hands-on tutorial**
 
 *Adapted from the official [AutoGluon Tabular Essentials tutorial](https://auto.gluon.ai/stable/tutorials/tabular/tabular-essentials.html), on the dataset from notebook 02.*

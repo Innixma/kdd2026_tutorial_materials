@@ -30,6 +30,8 @@ def code(text: str) -> None:
 md("""
 # First contact: from a naive baseline to a tabular foundation model
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Innixma/kdd2026_tutorial_materials/blob/main/notebooks/02_first_contact.ipynb)
+
 **Taming Structured Data Foundation Models with AutoML — KDD 2026 hands-on tutorial**
 
 In this notebook we take one small real-world dataset and fit it three ways, in increasing
