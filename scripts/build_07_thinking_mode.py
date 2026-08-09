@@ -119,17 +119,16 @@ train_data.head(3)
 md("""
 ## Round 1 — the TFM struggle, live
 
-CatBoost against the foundation models, single fits on identical data. Two more TFMs are
-commented out but their **split 0** scores from the full benchmark protocol tell the same
-story: EXAONE-Tabular reaches **0.8681 AUC** and TabFM — the largest TFM — **0.8499**,
-both well behind CatBoost.
+CatBoost against the foundation models, single fits on identical data. Two more TFMs
+(EXAONE-Tabular and TabFM) are commented out — extra install and a very large checkpoint
+download respectively; their benchmark scores appear in the closing comparison.
 """)
 
 code("""
 # tabarena's benchmark wrappers drop into the same dict as classes. Install them with:
 #   pip install "tabarena[exaone_tabular] @ git+https://github.com/autogluon/tabarena.git#subdirectory=packages/tabarena"
-# from tabarena.models.exaone_tabular.model import EXAONETabularModel  # benchmark split-0 AUC: 0.8681
-# from tabarena.models.tabfm.model import TabFMModel  # ~13GB download; benchmark split-0 AUC: 0.8499
+# from tabarena.models.exaone_tabular.model import EXAONETabularModel
+# from tabarena.models.tabfm.model import TabFMModel  # ~13GB checkpoint download
 
 predictor = TabularPredictor(label=label, eval_metric="roc_auc").fit(
     train_data,
@@ -190,9 +189,10 @@ md("""
 
 One model, one switch, and the unclimbable wall is climbed: thinking mode does not just
 close the TFM-vs-CatBoost gap on this dataset — it comes out ahead. On the full benchmark
-protocol for this split, thinking scores **0.8867 AUC** against CatBoost
-(tuned + ensembled)'s **0.8738**, and on the TabArena leaderboard it is the only single
-model above the CatBoost family here, trailing just the full AutoGluon systems.
+protocol (mean over nine splits), the picture is: TabFM **0.858**, EXAONE-Tabular
+**0.872**, CatBoost (tuned + ensembled) **0.882** — and thinking **0.885**, the only
+single model above the CatBoost family on this dataset, trailing just the full AutoGluon
+systems on the TabArena leaderboard.
 
 The takeaways for practice:
 
