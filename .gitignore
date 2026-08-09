@@ -24,3 +24,5 @@ data/*.zip
 notebooks/ag_xgb_bagged/
 notebooks/AutogluonModels/
 notebooks/prior.py
+notebooks/noniid_naive/
+notebooks/noniid_grouped/
